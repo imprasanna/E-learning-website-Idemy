@@ -6,12 +6,14 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-const NameInput = () => {
+const NameInput = (props) => {
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap" }}>
       <FormControl sx={{ m: 1, width: "40ch" }} variant="outlined">
         <InputLabel htmlFor="outlined-adornment-email">Fullname</InputLabel>
         <OutlinedInput
+          value={props.name}
+          onChange={(event) => props.setName(event.target.value)}
           id="outlined-adornment-email"
           endAdornment={
             <InputAdornment position="end">

@@ -6,13 +6,15 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 
-const EmailInput = () => {
+const EmailInput = (props) => {
   return (
     <div>
       <Box sx={{ display: "flex", flexWrap: "wrap" }}>
         <FormControl sx={{ m: 1, width: "40ch" }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
           <OutlinedInput
+            value={props.email}
+            onChange={(event) => props.setEmail(event.target.value)}
             id="outlined-adornment-email"
             endAdornment={
               <InputAdornment position="end">

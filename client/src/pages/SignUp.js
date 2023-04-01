@@ -1,6 +1,6 @@
 import { Button, Typography } from "@mui/material";
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import EmailInput from "../components/EmailInput";
 import Logo from "../components/Logo";
 import PasswordInput from "../components/PasswordInput";
@@ -8,10 +8,17 @@ import NameInput from "../components/NameInput";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-    const { data } = await axios.post("http://localhost:8000/api/register");
-    console.log("REGISTER RESPONSE", data);
+    await axios.post("http://localhost:8000/api/register", {
+      name,
+      email,
+      password,
+    });
   };
 
   return (
@@ -45,9 +52,9 @@ const SignUp = () => {
         <p style={{ textAlign: "center" }}>
           Welcome to Idemy, hope you enjoy the learnings!
         </p>
-        <NameInput />
-        <EmailInput />
-        <PasswordInput />
+        <NameInput name={name} setName={setName} />
+        <EmailInput email={email} setEmail={setEmail} />
+        <PasswordInput password={password} setPassword={setPassword} />
         <Button
           onClick={handleSubmit}
           variant="contained"
