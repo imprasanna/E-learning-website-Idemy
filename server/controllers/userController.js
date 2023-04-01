@@ -1,7 +1,9 @@
 const Joi = require("joi");
 const { User } = require("../models/user");
 const genAuthToken = require("../utils/genAuthToken");
-const { encryptPassword } = require("../utils/encryptPassword");
+const bcrypt = require("bcrypt");
+
+const saltRounds = 10;
 
 const createUser = async (req, res) => {
   const schema = Joi.object({
@@ -20,7 +22,7 @@ const createUser = async (req, res) => {
     return res.status(400).send(error.details[0].message);
   }
 
-  let user = User.findOne({ email: req.body.email });
+  let user = await User.findOne({ email: req.body.email });
 
   if (user) {
     return res.status(400).send("User already exists!!!");
@@ -32,7 +34,9 @@ const createUser = async (req, res) => {
     password: req.body.password,
   });
 
-  await encryptPassword(user.password);
+  const salt = bcrypt.genSalt(saltRounds);
+
+  user.password = await bcrypt.hash(user.password, +salt);
 
   await user.save();
 

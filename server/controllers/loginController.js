@@ -1,7 +1,7 @@
 const genAuthToken = require("../utils/genAuthToken");
 const Joi = require("joi");
 const { User } = require("../models/user");
-const { comparePassword } = require("../utils/encryptPassword");
+const bcrypt = require("bcrypt");
 
 const validateUser = async (req, res) => {
   const schema = Joi.object({
@@ -24,7 +24,7 @@ const validateUser = async (req, res) => {
     return res.status(400).send("Invalid email or password!!!");
   }
 
-  const isValid = await comparePassword(req.body.password, user.password);
+  const isValid = await bcrypt.validate(req.body.password, user.password);
 
   if (!isValid) {
     return res.status(400).send("Invald email or password!!!");
