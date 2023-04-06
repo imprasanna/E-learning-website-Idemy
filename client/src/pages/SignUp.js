@@ -6,6 +6,8 @@ import Logo from "../components/Logo";
 import PasswordInput from "../components/PasswordInput";
 import NameInput from "../components/NameInput";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -14,11 +16,17 @@ const SignUp = () => {
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-    await axios.post("http://localhost:8000/api/register", {
-      name,
-      email,
-      password,
-    });
+
+    try {
+      await axios.post("http://localhost:8000/api/register", {
+        name,
+        email,
+        password,
+      });
+      toast.success("Signed Up Successfully!!");
+    } catch (err) {
+      toast.error(err.response.data);
+    }
   };
 
   return (
@@ -31,6 +39,7 @@ const SignUp = () => {
         height: "100vh",
       }}
     >
+      <ToastContainer position="top-center" />
       <div
         style={{
           display: "flex",
