@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-require("dotenv").config();
+require("dotenv").config({ path: ".env.local" });
 
 // Middlewares
 app.use(cors());

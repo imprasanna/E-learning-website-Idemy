@@ -1,4 +1,4 @@
-import { Button, Typography, fabClasses } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import EmailInput from "../components/EmailInput";
@@ -21,7 +21,7 @@ const SignUp = () => {
 
     try {
       setLoading(true);
-      await axios.post("http://localhost:8000/api/register", {
+      await axios.post(`${process.env.REACT_APP_API_URL}/register`, {
         name,
         email,
         password,
