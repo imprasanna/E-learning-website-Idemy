@@ -1,11 +1,36 @@
 import { Button, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import EmailInput from "../components/EmailInput";
 import Logo from "../components/Logo";
 import PasswordInput from "../components/PasswordInput";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
+import "react-toastify/dist/ReactToastify.css";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (ev) => {
+    ev.preventDefault();
+
+    try {
+      setLoading(true);
+      await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
+        email,
+        password,
+      });
+      toast.success("Logged in Successfully!!");
+      setLoading(false);
+    } catch (err) {
+      toast.error(err.response.data);
+      setLoading(false);
+    }
+  };
+
   return (
     <div
       style={{
@@ -16,6 +41,7 @@ const Login = () => {
         height: "100vh",
       }}
     >
+      <ToastContainer position="top-center" />
       <div
         style={{
           display: "flex",
@@ -37,8 +63,8 @@ const Login = () => {
         <p style={{ textAlign: "center" }}>
           Welcome to Idemy, hope you enjoy the learnings!
         </p>
-        <EmailInput />
-        <PasswordInput />
+        <EmailInput email={email} setEmail={setEmail} />
+        <PasswordInput password={password} setPassword={setPassword} />
         <p
           style={{
             color: "blue",
@@ -55,10 +81,12 @@ const Login = () => {
           Forgot password?
         </p>
         <Button
+          onClick={handleSubmit}
           variant="contained"
           sx={{ width: "96%", background: "#e07dd1", height: "50px" }}
+          disabled={!email || !password || loading}
         >
-          Login
+          {loading ? <CircularProgress size="1.5rem" /> : "Submit"}
         </Button>
       </div>
       <div>
