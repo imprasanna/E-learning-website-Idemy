@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Button, Typography, fabClasses } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import EmailInput from "../components/EmailInput";
@@ -8,24 +8,29 @@ import NameInput from "../components/NameInput";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
     try {
+      setLoading(true);
       await axios.post("http://localhost:8000/api/register", {
         name,
         email,
         password,
       });
       toast.success("Signed Up Successfully!!");
+      setLoading(false);
     } catch (err) {
       toast.error(err.response.data);
+      setLoading(false);
     }
   };
 
@@ -69,8 +74,9 @@ const SignUp = () => {
           variant="contained"
           sx={{ width: "96%", height: "50px", marginTop: "2rem" }}
           color="success"
+          disabled={!name || !email || !password || loading}
         >
-          Sign Up
+          {loading ? <CircularProgress size="1.5rem" /> : "Submit"}
         </Button>
       </div>
       <div>
