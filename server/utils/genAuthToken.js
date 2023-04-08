@@ -12,7 +12,8 @@ const genAuthToken = (user) => {
       email: user.email,
       password: user.password,
     },
-    jwtSecretKey
+    jwtSecretKey,
+    { expiresIn: "5d" }
   );
 
   return token;
