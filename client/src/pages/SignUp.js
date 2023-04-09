@@ -35,7 +35,7 @@ const SignUp = () => {
   };
 
   const handleKeyDown = (ev) => {
-    if ((ev.key = "Enter")) {
+    if (ev.key === "Enter") {
       handleSubmit(ev);
     }
   };

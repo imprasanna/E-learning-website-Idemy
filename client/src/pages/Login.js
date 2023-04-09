@@ -8,11 +8,13 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
@@ -29,6 +31,7 @@ const Login = () => {
       console.log("LOGIN RESPONSE", data);
       toast.success("Logged In Successfully!!");
       setLoading(false);
+      navigate("/");
     } catch (err) {
       toast.error(err.response.data);
       setLoading(false);
@@ -36,7 +39,7 @@ const Login = () => {
   };
 
   const handleKeyDown = (ev) => {
-    if ((ev.key = "Enter")) {
+    if (ev.key === "Enter") {
       handleSubmit(ev);
     }
   };
