@@ -25,7 +25,7 @@ const validateUser = async (req, res) => {
       return res.status(400).send("Invalid email or password!!!");
     }
 
-    const isValid = await bcrypt.validate(req.body.password, user.password);
+    const isValid = await bcrypt.compare(req.body.password, user.password);
 
     if (!isValid) {
       return res.status(400).send("Invald email or password!!!");
@@ -46,6 +46,7 @@ const validateUser = async (req, res) => {
     res.json(user);
   } catch (err) {
     res.status(400).send("Error! Try again!!");
+    console.log(err);
   }
 };
 

@@ -19,11 +19,15 @@ const Login = () => {
 
     try {
       setLoading(true);
-      await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
-        email,
-        password,
-      });
-      toast.success("Logged in Successfully!!");
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/login`,
+        {
+          email,
+          password,
+        }
+      );
+      console.log("LOGIN RESPONSE", data);
+      toast.success("Logged In Successfully!!");
       setLoading(false);
     } catch (err) {
       toast.error(err.response.data);
