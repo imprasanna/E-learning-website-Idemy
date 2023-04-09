@@ -34,6 +34,12 @@ const SignUp = () => {
     }
   };
 
+  const handleKeyDown = (ev) => {
+    if ((ev.key = "Enter")) {
+      handleSubmit(ev);
+    }
+  };
+
   return (
     <div
       style={{
@@ -66,9 +72,21 @@ const SignUp = () => {
         <p style={{ textAlign: "center" }}>
           Welcome to Idemy, hope you enjoy the learnings!
         </p>
-        <NameInput name={name} setName={setName} />
-        <EmailInput email={email} setEmail={setEmail} />
-        <PasswordInput password={password} setPassword={setPassword} />
+        <NameInput
+          name={name}
+          setName={setName}
+          handleKeyDown={handleKeyDown}
+        />
+        <EmailInput
+          email={email}
+          setEmail={setEmail}
+          handleKeyDown={handleKeyDown}
+        />
+        <PasswordInput
+          password={password}
+          setPassword={setPassword}
+          handleKeyDown={handleKeyDown}
+        />
         <Button
           onClick={handleSubmit}
           variant="contained"

@@ -21,6 +21,7 @@ const PasswordInput = (props) => {
       <FormControl sx={{ m: 1, width: "40ch" }} variant="outlined">
         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
         <OutlinedInput
+          onKeyDown={props.handleKeyDown}
           value={props.password}
           onChange={(event) => props.setPassword(event.target.value)}
           id="outlined-adornment-password"

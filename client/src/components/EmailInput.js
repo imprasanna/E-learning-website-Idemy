@@ -13,6 +13,7 @@ const EmailInput = (props) => {
         <FormControl sx={{ m: 1, width: "40ch" }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
           <OutlinedInput
+            onKeyDown={props.handleKeyDown}
             value={props.email}
             onChange={(event) => props.setEmail(event.target.value)}
             id="outlined-adornment-email"

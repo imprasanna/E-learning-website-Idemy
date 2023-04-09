@@ -12,6 +12,7 @@ const NameInput = (props) => {
       <FormControl sx={{ m: 1, width: "40ch" }} variant="outlined">
         <InputLabel htmlFor="outlined-adornment-email">Fullname</InputLabel>
         <OutlinedInput
+          onKeyDown={props.handleKeyDown}
           value={props.name}
           onChange={(event) => props.setName(event.target.value)}
           id="outlined-adornment-email"

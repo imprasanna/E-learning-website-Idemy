@@ -35,6 +35,12 @@ const Login = () => {
     }
   };
 
+  const handleKeyDown = (ev) => {
+    if ((ev.key = "Enter")) {
+      handleSubmit(ev);
+    }
+  };
+
   return (
     <div
       style={{
@@ -67,8 +73,16 @@ const Login = () => {
         <p style={{ textAlign: "center" }}>
           Welcome to Idemy, hope you enjoy the learnings!
         </p>
-        <EmailInput email={email} setEmail={setEmail} />
-        <PasswordInput password={password} setPassword={setPassword} />
+        <EmailInput
+          email={email}
+          setEmail={setEmail}
+          handleKeyDown={handleKeyDown}
+        />
+        <PasswordInput
+          password={password}
+          setPassword={setPassword}
+          handleKeyDown={handleKeyDown}
+        />
         <p
           style={{
             color: "blue",
@@ -85,6 +99,7 @@ const Login = () => {
           Forgot password?
         </p>
         <Button
+          onKeyDown={handleKeyDown}
           onClick={handleSubmit}
           variant="contained"
           sx={{ width: "96%", background: "#e07dd1", height: "50px" }}
