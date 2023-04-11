@@ -9,12 +9,15 @@ import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "@reduxjs/toolkit";
+import { login } from "../store/slices/authSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
@@ -28,9 +31,10 @@ const Login = () => {
           password,
         }
       );
-      console.log("LOGIN RESPONSE", data);
+      // console.log("LOGIN RESPONSE", data);
       toast.success("Logged In Successfully!!");
       setLoading(false);
+      dispatch(login(data));
       navigate("/");
     } catch (err) {
       toast.error(err.response.data);
