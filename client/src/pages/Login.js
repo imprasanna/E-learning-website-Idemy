@@ -9,7 +9,7 @@ import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
 import { login } from "../store/slices/authSlice";
 
 const Login = () => {
@@ -31,13 +31,17 @@ const Login = () => {
           password,
         }
       );
-      // console.log("LOGIN RESPONSE", data);
+      console.log("LOGIN RESPONSE", data);
       toast.success("Logged In Successfully!!");
       setLoading(false);
+      // dispatch the login data to the redux store
       dispatch(login(data));
-      navigate("/");
+      // save in local storage
+      // localStorage.setItem("user", JSON.stringify(data));
+      // navigate("/");
     } catch (err) {
       toast.error(err.response.data);
+      console.log(err);
       setLoading(false);
     }
   };
