@@ -72,7 +72,9 @@ const Login = () => {
           flexDirection: "column",
         }}
       >
-        <img width="80px" src={logo} alt="Idemy logo" />
+        <Link to="/">
+          <img width="80px" src={logo} alt="Idemy logo" />
+        </Link>
         <Typography
           sx={{
             fontFamily: "'Montserrat Alternates', sans-serif",
