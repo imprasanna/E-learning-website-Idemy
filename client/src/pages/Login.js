@@ -38,7 +38,7 @@ const Login = () => {
       dispatch(login(data));
       // save in local storage
       // localStorage.setItem("user", JSON.stringify(data));
-      // navigate("/");
+      navigate("/");
     } catch (err) {
       toast.error(err.response.data);
       console.log(err);
