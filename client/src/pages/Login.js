@@ -70,7 +70,6 @@ const Login = () => {
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
-          paddingTop: "2rem",
         }}
       >
         <Logo />
