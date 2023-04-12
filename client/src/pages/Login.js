@@ -1,7 +1,6 @@
 import { Button, Typography } from "@mui/material";
 import React, { useState } from "react";
 import EmailInput from "../components/EmailInput";
-import Logo from "../components/Logo";
 import PasswordInput from "../components/PasswordInput";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -11,6 +10,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../store/slices/authSlice";
+import logo from "../assets/Idemy.png";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -72,7 +72,7 @@ const Login = () => {
           flexDirection: "column",
         }}
       >
-        <Logo />
+        <img width="80px" src={logo} alt="Idemy logo" />
         <Typography
           sx={{
             fontFamily: "'Montserrat Alternates', sans-serif",

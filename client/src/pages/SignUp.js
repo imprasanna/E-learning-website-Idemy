@@ -2,13 +2,13 @@ import { Button, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import EmailInput from "../components/EmailInput";
-import Logo from "../components/Logo";
 import PasswordInput from "../components/PasswordInput";
 import NameInput from "../components/NameInput";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
+import logo from "../assets/Idemy.png";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -59,7 +59,7 @@ const SignUp = () => {
           paddingTop: "2rem",
         }}
       >
-        <Logo />
+        <img width="80px" src={logo} alt="Idemy logo" />
         <Typography
           sx={{
             fontFamily: "'Montserrat Alternates', sans-serif",
