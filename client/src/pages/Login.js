@@ -31,14 +31,16 @@ const Login = () => {
           password,
         }
       );
-      console.log("LOGIN RESPONSE", data);
-      toast.success("Logged In Successfully!!");
-      setLoading(false);
+      // console.log("LOGIN RESPONSE", data);
+      // save in local storage
+      localStorage.setItem("user", JSON.stringify(data));
+      // navigate to homepage after successful login
+      navigate("/");
       // dispatch the login data to the redux store
       dispatch(login(data));
-      // save in local storage
-      // localStorage.setItem("user", JSON.stringify(data));
-      navigate("/");
+
+      toast.success("Logged In Successfully!!");
+      setLoading(false);
     } catch (err) {
       toast.error(err.response.data);
       console.log(err);

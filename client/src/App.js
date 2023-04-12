@@ -3,8 +3,17 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "./store/slices/authSlice";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(login(JSON.parse(localStorage.getItem("user"))));
+  }, [dispatch]);
+
   return (
     <>
       <Routes>
