@@ -1,4 +1,4 @@
-export const logout = async (req, res) => {
+const logout = async (req, res) => {
   try {
     res.clearCookie("token");
     return res.status(200).send("Logged Out Successfully!");
@@ -6,3 +6,5 @@ export const logout = async (req, res) => {
     console.log(err);
   }
 };
+
+module.exports = { logout };
