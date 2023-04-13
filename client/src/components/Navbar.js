@@ -1,6 +1,6 @@
 import React from "react";
 import { Paper } from "@mui/material";
-import logo from "../assets/Idemy-logo.png";
+import logo from "../assets/Idemy-logo-nav.png";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -8,22 +8,19 @@ const Navbar = () => {
     <>
       <Paper
         sx={{
-          width: "100vw",
-          height: "60px",
+          width: "85px",
+          height: "95vh",
           display: "flex",
-          alignItems: "center",
+          background: "#32297c",
+          borderRadius: "30px",
+          position: "fixed",
+          margin: "auto 0",
+          justifyContent: "center",
+          paddingTop: "1rem",
         }}
-        elevation={5}
       >
         <Link to="/">
-          <img
-            style={{
-              paddingLeft: "2rem",
-            }}
-            width="130px"
-            src={logo}
-            alt="Idemy-logo"
-          />
+          <img width="50px" src={logo} alt="Idemy-logo" />
         </Link>
       </Paper>
     </>
