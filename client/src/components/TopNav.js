@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Paper } from "@mui/material";
 import "../TopNav.css";
 import SearchIcon from "@mui/icons-material/Search";
+import LoginIcon from "@mui/icons-material/Login";
 
 const TopNav = () => {
   const [searchIcon, renderSearchIcon] = useState(false);
