@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Paper } from "@mui/material";
 import "../TopNav.css";
 import SearchIcon from "@mui/icons-material/Search";
-import LoginIcon from "@mui/icons-material/Login";
+// import LoginIcon from "@mui/icons-material/Login";
 
 const TopNav = () => {
   const [searchIcon, renderSearchIcon] = useState(false);
@@ -28,7 +28,12 @@ const TopNav = () => {
       <div className="body" style={{ marginLeft: "110px" }}>
         <div style={{ width: "100%", display: "flex", alignItems: "center" }}>
           <Link to="/">
-            <img width="120px" src={logo} alt="Idemy logo" />
+            <img
+              style={{ userSelect: "none" }}
+              width="120px"
+              src={logo}
+              alt="Idemy logo"
+            />
           </Link>
           <Paper
             sx={{

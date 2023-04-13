@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Paper } from "@mui/material";
 import logo from "../assets/Idemy-logo-nav.png";
 import { Link } from "react-router-dom";
@@ -6,8 +6,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import LogoutIcon from "@mui/icons-material/Logout";
-import "../Navbar.css";
 import { useNavigate } from "react-router-dom";
+import "../Navbar.css";
 
 const Navbar = () => {
   const [isHomeActive, makeHomeActive] = useState(true);
@@ -16,24 +16,39 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    makeHomeActive(false);
+    makeCoursesActive(false);
+  }, [makeMaterialsActive]);
+
+  useEffect(() => {
+    makeMaterialsActive(false);
+    makeHomeActive(false);
+  }, [makeCoursesActive]);
+
+  useEffect(() => {
+    makeMaterialsActive(false);
+    makeCoursesActive(false);
+  }, [makeHomeActive]);
+
   const handleHomeClick = () => {
     makeHomeActive(true);
-    makeCoursesActive(false);
-    makeMaterialsActive(false);
+    // makeCoursesActive(false);
+    // makeMaterialsActive(false);
     navigate("/");
   };
 
   const handleCoursesClick = () => {
     makeCoursesActive(true);
-    makeHomeActive(false);
-    makeMaterialsActive(false);
+    // makeHomeActive(false);
+    // makeMaterialsActive(false);
     navigate("/courses");
   };
 
   const handleMaterialsClick = () => {
     makeMaterialsActive(true);
-    makeCoursesActive(false);
-    makeHomeActive(false);
+    // makeHomeActive(false);
+    // makeCoursesActive(false);
     navigate("/materials");
   };
 
