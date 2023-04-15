@@ -28,6 +28,11 @@ export const navStateSlice = createSlice({
     setMaterialsFalse: (state) => {
       state.materials = false;
     },
+    resetNav: (state) => {
+      state.home = true;
+      state.courses = false;
+      state.materials = false;
+    },
   },
 });
 
@@ -38,6 +43,7 @@ export const {
   setCoursesTrue,
   setMaterialsFalse,
   setMaterialsTrue,
+  resetNav,
 } = navStateSlice.actions;
 
 export default navStateSlice.reducer;
