@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Paper } from "@mui/material";
 import logo from "../assets/Idemy-logo-nav.png";
 import { Link } from "react-router-dom";
@@ -8,47 +8,65 @@ import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
 import "../Navbar.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setHomeTrue,
+  setHomeFalse,
+  setCoursesFalse,
+  setCoursesTrue,
+  setMaterialsFalse,
+  setMaterialsTrue,
+} from "../store/slices/navStateSlice";
 
 const Navbar = () => {
-  const [isHomeActive, makeHomeActive] = useState(true);
-  const [isCoursesActive, makeCoursesActive] = useState(false);
-  const [isMaterialsActive, makeMaterialsActive] = useState(false);
+  // const [home, makeHomeActive] = useState(true);
+  // const [courses, makeCoursesActive] = useState(false);
+  // const [materials, makeMaterialsActive] = useState(false);
+
+  function homeIsActive() {
+    dispatch(setHomeTrue());
+    dispatch(setMaterialsFalse());
+    dispatch(setCoursesFalse());
+    // makeHomeActive(true);
+    // makeCoursesActive(false);
+    // makeMaterialsActive(false);
+  }
+
+  function coursesIsActive() {
+    dispatch(setCoursesTrue());
+    dispatch(setHomeFalse());
+    dispatch(setMaterialsFalse());
+    // makeCoursesActive(true);
+    // makeHomeActive(false);
+    // makeMaterialsActive(false);
+  }
+
+  function materialsIsActive() {
+    dispatch(setMaterialsTrue());
+    dispatch(setHomeFalse());
+    dispatch(setCoursesFalse());
+    // makeMaterialsActive(true);
+    // makeHomeActive(false);
+    // makeCoursesActive(false);
+  }
+
+  const { home, courses, materials } = useSelector((state) => state.navState);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    makeHomeActive(false);
-    makeCoursesActive(false);
-  }, [makeMaterialsActive]);
-
-  useEffect(() => {
-    makeMaterialsActive(false);
-    makeHomeActive(false);
-  }, [makeCoursesActive]);
-
-  useEffect(() => {
-    makeMaterialsActive(false);
-    makeCoursesActive(false);
-  }, [makeHomeActive]);
-
   const handleHomeClick = () => {
-    makeHomeActive(true);
-    // makeCoursesActive(false);
-    // makeMaterialsActive(false);
+    homeIsActive();
     navigate("/");
   };
 
   const handleCoursesClick = () => {
-    makeCoursesActive(true);
-    // makeHomeActive(false);
-    // makeMaterialsActive(false);
+    coursesIsActive();
     navigate("/courses");
   };
 
-  const handleMaterialsClick = () => {
-    makeMaterialsActive(true);
-    // makeHomeActive(false);
-    // makeCoursesActive(false);
+  const handleMaterialsClick = async () => {
+    materialsIsActive();
     navigate("/materials");
   };
 
@@ -92,11 +110,11 @@ const Navbar = () => {
               marginBottom: "1.5rem",
               cursor: "pointer",
             }}
-            className={`home-icon ${isHomeActive ? "active" : ""}`}
+            className={`home-icon ${home ? "active" : ""}`}
           >
             <HomeIcon
               sx={{
-                color: isHomeActive ? "#ffc37c" : "white",
+                color: home ? "#ffc37c" : "white",
                 fontSize: "1.5rem",
                 width: "100%",
                 textAlign: "center",
@@ -110,7 +128,7 @@ const Navbar = () => {
                 width: "100%",
                 textAlign: "center",
                 userSelect: "none",
-                display: isHomeActive ? "none" : "block",
+                display: home ? "none" : "block",
               }}
             >
               Home
@@ -123,11 +141,11 @@ const Navbar = () => {
               marginBottom: "1.5rem",
               cursor: "pointer",
             }}
-            className={`courses-icon ${isCoursesActive ? "active" : ""}`}
+            className={`courses-icon ${courses ? "active" : ""}`}
           >
             <LocalLibraryIcon
               sx={{
-                color: isCoursesActive ? "#ffc37c" : "white",
+                color: courses ? "#ffc37c" : "white",
                 fontSize: "1.5rem",
                 width: "100%",
                 textAlign: "center",
@@ -141,7 +159,7 @@ const Navbar = () => {
                 width: "100%",
                 textAlign: "center",
                 userSelect: "none",
-                display: isCoursesActive ? "none" : "block",
+                display: courses ? "none" : "block",
               }}
             >
               Courses
@@ -150,31 +168,29 @@ const Navbar = () => {
           <div
             onClick={handleMaterialsClick}
             style={{ textDecoration: "none", cursor: "pointer" }}
-            className={`materials-icon ${isMaterialsActive ? "active" : ""}`}
+            className={`materials-icon ${materials ? "active" : ""}`}
           >
-            <Link to="/materials">
-              <LibraryBooksIcon
-                sx={{
-                  color: isMaterialsActive ? "#ffc37c" : "white",
-                  fontSize: "1.5rem",
-                  width: "100%",
-                  textAlign: "center",
-                }}
-              />
-              <p
-                style={{
-                  margin: "1px",
-                  color: "white",
-                  fontSize: "0.65rem",
-                  width: "100%",
-                  textAlign: "center",
-                  userSelect: "none",
-                  display: isMaterialsActive ? "none" : "block",
-                }}
-              >
-                Materials
-              </p>
-            </Link>
+            <LibraryBooksIcon
+              sx={{
+                color: materials ? "#ffc37c" : "white",
+                fontSize: "1.5rem",
+                width: "100%",
+                textAlign: "center",
+              }}
+            />
+            <p
+              style={{
+                margin: "1px",
+                color: "white",
+                fontSize: "0.65rem",
+                width: "100%",
+                textAlign: "center",
+                userSelect: "none",
+                display: materials ? "none" : "block",
+              }}
+            >
+              Materials
+            </p>
           </div>
         </div>
 
