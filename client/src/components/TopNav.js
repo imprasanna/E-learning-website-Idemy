@@ -4,14 +4,19 @@ import { Paper } from "@mui/material";
 import "../TopNav.css";
 import SearchIcon from "@mui/icons-material/Search";
 import { useDispatch } from "react-redux";
-// import LoginIcon from "@mui/icons-material/Login";
 import { resetNav } from "../store/slices/navStateSlice";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
+import LoginIcon from "@mui/icons-material/Login";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import { Link } from "react-router-dom";
 
 const TopNav = () => {
   const [searchIcon, renderSearchIcon] = useState(false);
   const [searchFocusOutline, renderFocusOutline] = useState(false);
   const [translation, translateBox] = useState(false);
+  const [loginHover, loginButtonIsHovered] = useState(false);
+  const [signUpHover, signUpButtonIsHovered] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,17 +41,26 @@ const TopNav = () => {
   return (
     <div>
       <div className="body" style={{ marginLeft: "110px" }}>
-        <div style={{ width: "100%", display: "flex", alignItems: "center" }}>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
           <img
             onClick={handleClick}
-            style={{ userSelect: "none", cursor: "pointer" }}
+            style={{
+              userSelect: "none",
+              cursor: "pointer",
+            }}
             width="120px"
             src={logo}
             alt="Idemy logo"
           />
           <Paper
             sx={{
-              marginLeft: "8rem",
               display: "flex",
               alignItems: "center",
               color: "#c2c1d4",
@@ -70,6 +84,34 @@ const TopNav = () => {
               type="text"
             />
           </Paper>
+
+          <div className="buttons" style={{ marginRight: "2rem" }}>
+            <Link to="/login">
+              <Button
+                sx={{ background: "#fcc17a" }}
+                startIcon={<LoginIcon />}
+                onMouseEnter={() => loginButtonIsHovered(true)}
+                onMouseLeave={() => loginButtonIsHovered(false)}
+                color="success"
+                variant={loginHover ? "outlined" : "contained"}
+              >
+                Login
+              </Button>
+            </Link>
+
+            <Link to="/signup">
+              <Button
+                sx={{ background: "#fcc17a", marginLeft: "1rem" }}
+                startIcon={<PersonAddIcon />}
+                onMouseEnter={() => signUpButtonIsHovered(true)}
+                onMouseLeave={() => signUpButtonIsHovered(false)}
+                color="success"
+                variant={signUpHover ? "outlined" : "contained"}
+              >
+                Sign Up
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
