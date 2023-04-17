@@ -9,10 +9,10 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      state.user = [action.payload];
+      state.user = action.payload;
     },
-    logout: (state, action) => {
-      state.user = [null];
+    logout: (state) => {
+      state.user = null;
     },
   },
 });

@@ -51,6 +51,7 @@ const Navbar = () => {
   }
 
   const { home, courses, materials } = useSelector((state) => state.navState);
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -193,29 +194,32 @@ const Navbar = () => {
             </p>
           </div>
         </div>
-
-        <div className="logout-icon" style={{ cursor: "pointer" }}>
-          <LogoutIcon
-            sx={{
-              color: "white",
-              fontSize: "1.5rem",
-              width: "100%",
-              textAlign: "center",
-            }}
-          />
-          <p
-            style={{
-              margin: "1px",
-              color: "white",
-              fontSize: "0.65rem",
-              width: "100%",
-              textAlign: "center",
-              userSelect: "none",
-            }}
-          >
-            Logout
-          </p>
-        </div>
+        {user !== null ? (
+          <div className="logout-icon" style={{ cursor: "pointer" }}>
+            <LogoutIcon
+              sx={{
+                color: "white",
+                fontSize: "1.5rem",
+                width: "100%",
+                textAlign: "center",
+              }}
+            />
+            <p
+              style={{
+                margin: "1px",
+                color: "white",
+                fontSize: "0.65rem",
+                width: "100%",
+                textAlign: "center",
+                userSelect: "none",
+              }}
+            >
+              Logout
+            </p>
+          </div>
+        ) : (
+          <div></div>
+        )}
       </Paper>
     </>
   );

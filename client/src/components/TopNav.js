@@ -10,6 +10,7 @@ import { Button } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const TopNav = () => {
   const [searchIcon, renderSearchIcon] = useState(false);
@@ -17,6 +18,8 @@ const TopNav = () => {
   const [translation, translateBox] = useState(false);
   const [loginHover, loginButtonIsHovered] = useState(false);
   const [signUpHover, signUpButtonIsHovered] = useState(false);
+
+  const { user } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -85,33 +88,37 @@ const TopNav = () => {
             />
           </Paper>
 
-          <div className="buttons" style={{ marginRight: "2rem" }}>
-            <Link to="/login">
-              <Button
-                sx={{ background: "#fcc17a" }}
-                startIcon={<LoginIcon />}
-                onMouseEnter={() => loginButtonIsHovered(true)}
-                onMouseLeave={() => loginButtonIsHovered(false)}
-                color="success"
-                variant={loginHover ? "outlined" : "contained"}
-              >
-                Login
-              </Button>
-            </Link>
+          {user === null ? (
+            <div className="buttons" style={{ marginRight: "2rem" }}>
+              <Link to="/login">
+                <Button
+                  sx={{ background: "#fcc17a" }}
+                  startIcon={<LoginIcon />}
+                  onMouseEnter={() => loginButtonIsHovered(true)}
+                  onMouseLeave={() => loginButtonIsHovered(false)}
+                  color="success"
+                  variant={loginHover ? "outlined" : "contained"}
+                >
+                  Login
+                </Button>
+              </Link>
 
-            <Link to="/signup">
-              <Button
-                sx={{ background: "#fcc17a", marginLeft: "1rem" }}
-                startIcon={<PersonAddIcon />}
-                onMouseEnter={() => signUpButtonIsHovered(true)}
-                onMouseLeave={() => signUpButtonIsHovered(false)}
-                color="success"
-                variant={signUpHover ? "outlined" : "contained"}
-              >
-                Sign Up
-              </Button>
-            </Link>
-          </div>
+              <Link to="/signup">
+                <Button
+                  sx={{ background: "#fcc17a", marginLeft: "1rem" }}
+                  startIcon={<PersonAddIcon />}
+                  onMouseEnter={() => signUpButtonIsHovered(true)}
+                  onMouseLeave={() => signUpButtonIsHovered(false)}
+                  color="success"
+                  variant={signUpHover ? "outlined" : "contained"}
+                >
+                  Sign Up
+                </Button>
+              </Link>
+            </div>
+          ) : (
+            <div style={{ marginRight: "2rem" }}>{user.name}</div>
+          )}
         </div>
       </div>
     </div>
