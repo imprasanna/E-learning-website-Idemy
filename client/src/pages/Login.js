@@ -31,7 +31,7 @@ const Login = () => {
           password,
         }
       );
-      // console.log("LOGIN RESPONSE", data);
+      console.log("LOGIN RESPONSE", data);
       // save in local storage
       localStorage.setItem("user", JSON.stringify(data));
       // navigate to homepage after successful login
@@ -119,7 +119,7 @@ const Login = () => {
           sx={{ width: "96%", background: "#e07dd1", height: "50px" }}
           disabled={!email || !password || loading}
         >
-          {loading ? <CircularProgress size="1.5rem" /> : "Submit"}
+          {loading ? <CircularProgress size="1.5rem" /> : "Login"}
         </Button>
       </div>
       <div>

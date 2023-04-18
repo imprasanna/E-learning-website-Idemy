@@ -9,6 +9,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import logo from "../assets/Idemy.png";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../store/slices/authSlice";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -16,16 +19,29 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleSubmit = async (ev) => {
     ev.preventDefault();
 
     try {
       setLoading(true);
-      await axios.post(`${process.env.REACT_APP_API_URL}/register`, {
-        name,
-        email,
-        password,
-      });
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/register`,
+        {
+          name,
+          email,
+          password,
+        }
+      );
+      // // console.log("LOGIN SIGNUP RESPONSE", data);
+      // save in local storage
+      localStorage.setItem("user", JSON.stringify(data));
+      // navigate to homepage after successful login through signup
+      navigate("/");
+      // dispatch the login data to the redux store
+      dispatch(login(data));
       toast.success("Signed Up Successfully!!");
       setLoading(false);
     } catch (err) {
@@ -96,7 +112,7 @@ const SignUp = () => {
           color="success"
           disabled={!name || !email || !password || loading}
         >
-          {loading ? <CircularProgress size="1.5rem" /> : "Submit"}
+          {loading ? <CircularProgress size="1.5rem" /> : "Sign Up"}
         </Button>
       </div>
       <div>

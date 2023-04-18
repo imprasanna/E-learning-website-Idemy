@@ -42,7 +42,23 @@ const createUser = async (req, res) => {
 
   const token = genAuthToken(user);
 
-  res.send(token);
+  // set the auth token in a cookie
+  res.cookie("token", token, {
+    httpOnly: true,
+    // secure: true,   => for https
+  });
+
+  // send the user data and token to the client
+  res.json({
+    user: {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      picture: user.picture,
+      role: user.role,
+    },
+    token: token,
+  });
 };
 
 module.exports = { createUser };

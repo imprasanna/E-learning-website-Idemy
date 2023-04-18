@@ -41,6 +41,8 @@ const TopNav = () => {
     navigate("/");
   };
 
+  // // console.log(user);
+
   return (
     <div>
       <div className="body" style={{ marginLeft: "110px" }}>
@@ -117,7 +119,7 @@ const TopNav = () => {
               </Link>
             </div>
           ) : (
-            <div style={{ marginRight: "2rem" }}>{user.name}</div>
+            <div style={{ marginRight: "2rem" }}>{user.user.name}</div>
           )}
         </div>
       </div>
