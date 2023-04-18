@@ -1,5 +1,5 @@
 import { Button, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import EmailInput from "../components/EmailInput";
 import PasswordInput from "../components/PasswordInput";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../store/slices/authSlice";
 import logo from "../assets/Idemy.png";
+import { useSelector } from "react-redux";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,6 +19,15 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    console.log(user);
+    if (user !== null) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
