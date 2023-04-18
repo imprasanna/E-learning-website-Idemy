@@ -35,13 +35,13 @@ const SignUp = () => {
           password,
         }
       );
-      // // console.log("LOGIN SIGNUP RESPONSE", data);
+      // console.log("LOGIN SIGNUP RESPONSE", data.user);
       // save in local storage
-      localStorage.setItem("user", JSON.stringify(data));
+      localStorage.setItem("user", JSON.stringify(data.user));
       // navigate to homepage after successful login through signup
       navigate("/");
       // dispatch the login data to the redux store
-      dispatch(login(data));
+      dispatch(login(data.user));
       toast.success("Signed Up Successfully!!");
       setLoading(false);
     } catch (err) {

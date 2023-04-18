@@ -119,7 +119,7 @@ const TopNav = () => {
               </Link>
             </div>
           ) : (
-            <div style={{ marginRight: "2rem" }}>{user.user.name}</div>
+            <div style={{ marginRight: "2rem" }}>{user.name}</div>
           )}
         </div>
       </div>

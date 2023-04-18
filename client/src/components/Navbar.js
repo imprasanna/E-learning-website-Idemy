@@ -9,6 +9,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
 import "../Navbar.css";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 import {
   setHomeTrue,
   setHomeFalse,
@@ -16,7 +17,10 @@ import {
   setCoursesTrue,
   setMaterialsFalse,
   setMaterialsTrue,
+  resetNav,
 } from "../store/slices/navStateSlice";
+import { logout } from "../store/slices/authSlice";
+import { ToastContainer, toast } from "react-toastify";
 
 const Navbar = () => {
   // const [home, makeHomeActive] = useState(true);
@@ -71,8 +75,25 @@ const Navbar = () => {
     navigate("/materials");
   };
 
+  const handleLogout = () => {
+    // perform three actions:
+    // 1. Dispatch the logout acion to global store
+    // 2. Clear the local storage data of the user in browser
+    // 3. Read the data from logout API to return status code and response message
+
+    dispatch(logout());
+    localStorage.removeItem("user");
+    // const { data } = axios.post(`${process.env.REACT_APP_API_URL}/logout`);
+    // console.log(data);
+    axios.post(`${process.env.REACT_APP_API_URL}/logout`);
+    dispatch(resetNav());
+    navigate("/");
+    toast.success("Logged out!!");
+  };
+
   return (
     <>
+      <ToastContainer position="top-center" />
       <Paper
         sx={{
           width: "85px",
@@ -195,7 +216,11 @@ const Navbar = () => {
           </div>
         </div>
         {user !== null ? (
-          <div className="logout-icon" style={{ cursor: "pointer" }}>
+          <div
+            onClick={handleLogout}
+            className="logout-icon"
+            style={{ cursor: "pointer" }}
+          >
             <LogoutIcon
               sx={{
                 color: "white",

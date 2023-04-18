@@ -31,7 +31,7 @@ const Login = () => {
           password,
         }
       );
-      console.log("LOGIN RESPONSE", data);
+      // console.log("LOGIN RESPONSE", data);
       // save in local storage
       localStorage.setItem("user", JSON.stringify(data));
       // navigate to homepage after successful login

@@ -1,7 +1,7 @@
 const { logout } = require("../controllers/logoutController");
 
 const logoutRoutes = (app) => {
-  app.get("/api/logout", logout);
+  app.post("/api/logout", logout);
 };
 
 module.exports = { logoutRoutes };
