@@ -12,6 +12,7 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import TopNavRight from "./TopNavRight";
+import InstructorBtn from "./InstructorBtn";
 
 const TopNav = () => {
   const [searchIcon, renderSearchIcon] = useState(false);
@@ -102,11 +103,7 @@ const TopNav = () => {
             </Paper>
           </div>
 
-          {user !== null ? (
-            <div style={{ color: "#32297c" }}>Teach on Idemy</div>
-          ) : (
-            <div></div>
-          )}
+          {user !== null ? <InstructorBtn /> : <div></div>}
 
           {user === null ? (
             <div className="buttons" style={{ marginRight: "2rem" }}>
