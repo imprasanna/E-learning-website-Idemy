@@ -70,8 +70,9 @@ const TopNav = () => {
               alignItems: "center",
               color: "#c2c1d4",
               borderRadius: "20px",
+              marginRight: "8rem",
               outline: searchFocusOutline ? "2px solid #a8a8e6" : "none",
-              transform: translation ? "translateX(-34px)" : "none",
+              transform: translation ? "translateX(-20px)" : "none",
             }}
             elevation={0}
           >
