@@ -187,33 +187,38 @@ const Navbar = () => {
               Courses
             </p>
           </div>
-          <div
-            onClick={handleMaterialsClick}
-            style={{ textDecoration: "none", cursor: "pointer" }}
-            className={`materials-icon ${materials ? "active" : ""}`}
-          >
-            <LibraryBooksIcon
-              sx={{
-                color: materials ? "#ffc37c" : "white",
-                fontSize: "1.5rem",
-                width: "100%",
-                textAlign: "center",
-              }}
-            />
-            <p
-              style={{
-                margin: "1px",
-                color: "white",
-                fontSize: "0.65rem",
-                width: "100%",
-                textAlign: "center",
-                userSelect: "none",
-                display: materials ? "none" : "block",
-              }}
+
+          {user !== null ? (
+            <div
+              onClick={handleMaterialsClick}
+              style={{ textDecoration: "none", cursor: "pointer" }}
+              className={`materials-icon ${materials ? "active" : ""}`}
             >
-              Materials
-            </p>
-          </div>
+              <LibraryBooksIcon
+                sx={{
+                  color: materials ? "#ffc37c" : "white",
+                  fontSize: "1.5rem",
+                  width: "100%",
+                  textAlign: "center",
+                }}
+              />
+              <p
+                style={{
+                  margin: "1px",
+                  color: "white",
+                  fontSize: "0.65rem",
+                  width: "100%",
+                  textAlign: "center",
+                  userSelect: "none",
+                  display: materials ? "none" : "block",
+                }}
+              >
+                Materials
+              </p>
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
         {user !== null ? (
           <div
