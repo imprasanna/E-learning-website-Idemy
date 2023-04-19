@@ -5,6 +5,7 @@ import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 import CoursesPage from "./pages/CoursesPage";
 import MaterialsPage from "./pages/MaterialsPage";
+import InstructorPage from "./pages/InstructorPage";
 // import { useEffect } from "react";
 // import { useDispatch } from "react-redux";
 // import { login } from "./store/slices/authSlice";
@@ -24,6 +25,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/courses" element={<CoursesPage />} />
         <Route path="/materials" element={<MaterialsPage />} />
+        <Route path="/instructor" element={<InstructorPage />} />
       </Routes>
     </>
   );
