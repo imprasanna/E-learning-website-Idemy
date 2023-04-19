@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../assets/Idemy-logo.png";
 import { Paper } from "@mui/material";
 import "../TopNav.css";
@@ -11,6 +11,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import TopNavRight from "./TopNavRight";
 
 const TopNav = () => {
   const [searchIcon, renderSearchIcon] = useState(false);
@@ -41,7 +42,7 @@ const TopNav = () => {
     navigate("/");
   };
 
-  // // console.log(user);
+  // console.log(user);
 
   return (
     <div>
@@ -64,32 +65,48 @@ const TopNav = () => {
             src={logo}
             alt="Idemy logo"
           />
-          <Paper
-            sx={{
+
+          <div
+            className="search-wrapper"
+            style={{
               display: "flex",
               alignItems: "center",
-              color: "#c2c1d4",
-              borderRadius: "20px",
-              marginRight: "8rem",
-              outline: searchFocusOutline ? "2px solid #a8a8e6" : "none",
-              transform: translation ? "translateX(-20px)" : "none",
+              color: "transparent",
+              width: "500px",
             }}
-            elevation={0}
           >
-            <SearchIcon
+            <Paper
               sx={{
-                paddingLeft: "15px",
-                display: searchIcon ? "inline" : "none",
+                display: "flex",
+                alignItems: "center",
+                color: "#c2c1d4",
+                borderRadius: "20px",
+                outline: searchFocusOutline ? "2px solid #a8a8e6" : "none",
+                transform: translation ? "translateX(-38px)" : "none",
               }}
-            />
-            <input
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              placeholder="Search here..."
-              className="search-box"
-              type="text"
-            />
-          </Paper>
+              elevation={0}
+            >
+              <SearchIcon
+                sx={{
+                  paddingLeft: "15px",
+                  display: searchIcon ? "inline" : "none",
+                }}
+              />
+              <input
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                placeholder="Search here..."
+                className="search-box"
+                type="text"
+              />
+            </Paper>
+          </div>
+
+          {user !== null ? (
+            <div style={{ color: "#32297c" }}>Teach on Idemy</div>
+          ) : (
+            <div></div>
+          )}
 
           {user === null ? (
             <div className="buttons" style={{ marginRight: "2rem" }}>
@@ -120,7 +137,7 @@ const TopNav = () => {
               </Link>
             </div>
           ) : (
-            <div style={{ marginRight: "2rem" }}>{user.name}</div>
+            <TopNavRight />
           )}
         </div>
       </div>
