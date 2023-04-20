@@ -23,7 +23,7 @@ const TopNavRight = () => {
           marginRight: "2rem",
           display: "flex",
           alignItems: "center",
-          color: "#32297c",
+          color: "#4e40bb",
           fontSize: "0.9rem",
         }}
       >
