@@ -5,6 +5,7 @@ const { userRoutes } = require("./routes/register");
 const { loginRoutes } = require("./routes/login");
 const mongoose = require("mongoose");
 const { logoutRoutes } = require("./routes/logout");
+const { instructorRoutes } = require("./routes/instructor");
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.listen(port, () => {
 userRoutes(app);
 loginRoutes(app);
 logoutRoutes(app);
+instructorRoutes(app);
 
 async function main() {
   await mongoose.connect(uri, {
