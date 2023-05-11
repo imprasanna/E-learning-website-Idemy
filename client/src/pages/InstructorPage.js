@@ -24,7 +24,7 @@ const InstructorPage = () => {
   return (
     <div>
       <ToastContainer position="top-center" />
-      <div>Let's start changing the lives of students and yours too!</div>
+      <div>Let's start changing the lives of students!</div>
       <Button variant="contained" onClick={handleClick}>
         Get Started
       </Button>
