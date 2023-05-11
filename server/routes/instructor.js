@@ -1,5 +1,5 @@
 const { makeInstructor } = require("../controllers/instructorController");
-const { adminMiddleware } = require("../middlewares/authMiddleware");
+const { adminMiddleware } = require("../middlewares/adminMiddleware");
 const { requireSignIn } = require("../middlewares/checkSignIn");
 
 const instructorRoutes = (app) => {
