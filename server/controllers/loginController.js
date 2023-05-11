@@ -4,6 +4,7 @@ const { User } = require("../models/user");
 const bcrypt = require("bcrypt");
 
 const validateUser = async (req, res) => {
+  console.log("hello");
   try {
     const schema = Joi.object({
       email: Joi.string().min(5).max(200).required().email(),
@@ -33,6 +34,7 @@ const validateUser = async (req, res) => {
 
     const token = genAuthToken(user);
 
+    console.log(token);
     // send user and token to client, excluding hashed password
 
     user.password = undefined;

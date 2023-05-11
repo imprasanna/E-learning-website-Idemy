@@ -23,14 +23,16 @@ const userSchema = new Schema(
       max: 20,
     },
     picture: {
-      type: "String",
+      type: String,
       default: "/avatar.png",
     },
-    role: {
-      type: [String],
-      default: ["Subscriber"],
-      enum: ["Subscriber", "Instructor", "Admin"],
-    },
+    role: [
+      {
+        type: String,
+        default: ["Subscriber"],
+        enum: ["Subscriber", "Instructor", "Admin"],
+      },
+    ],
   },
   { timestamps: true }
 );
