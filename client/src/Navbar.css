@@ -1,0 +1,39 @@
+.active {
+    background-color: #32297c;
+    padding: 10px;
+    border: 15px solid #f5f6ff;
+    border-radius: 50%;
+    transform: translateX(20px);
+}
+
+.active::before {
+    content: "";
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 25px 10px 0px 0px #f5f6ff;
+    transform: translate(-4.5px, -64px) rotate(15deg);
+}
+
+.active::after {
+    content: "";
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 25px 10px 0px 0px #f5f6ff;
+    transform: translate(-4.5px, 64px) rotate(-60deg);
+}

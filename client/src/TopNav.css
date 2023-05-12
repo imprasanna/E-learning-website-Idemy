@@ -1,0 +1,17 @@
+.search-box {
+    width: 30rem;
+    height: 20px;
+    border: none;
+    padding: 10px;
+    padding-left: 15px;
+    border-radius: 20px;
+    font-size: 1.05rem;
+}
+
+.search-box:focus {
+    outline: none;
+}
+
+.search-box::placeholder {
+    color: #c2c1d4;
+}
