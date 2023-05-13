@@ -41,7 +41,7 @@ const Login = () => {
           password,
         },
         {
-          withCredentials: true
+          withCredentials: true,
         }
       );
       console.log("LOGIN RESPONSE", data);

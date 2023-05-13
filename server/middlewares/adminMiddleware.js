@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
 
 const adminMiddleware = (req, res, next) => {
-  console.log("Triggeredddddd!")
-  console.log("header",req.headers)
+  // console.log("Triggeredddddd!")
+  console.log("header", req.headers);
   const bearerToken = req.headers["authorization"];
   // const token = bearerToken?.replace("Bearer", "").trim();
   const token = req.headers.cookie?.replace("token=", "").trim();

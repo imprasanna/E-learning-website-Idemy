@@ -1,6 +1,6 @@
 const { User } = require("../models/user");
 
-const makeInstructor = async (req, res) => {
+const makeInstructor = async (req, res) => { 
   // console.log("REQ.USER", req.user);
   // console.log("REQ HEADER", req.header);
   console.log("REQ.USER", req.user);
