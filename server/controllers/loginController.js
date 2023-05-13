@@ -39,11 +39,20 @@ const validateUser = async (req, res) => {
 
     user.password = undefined;
 
+    const cookieOPtions = {
+      expires: new Date(
+          Date.now()+5 * 24*60*60*1000
+      ),
+      httpOnly: true
+  }
+
     // send token through cookie
-    res.cookie("token", token, {
-      httpOnly: true,
-      // secure: true,   => for https
-    });
+    res.cookie("token", token, cookieOPtions 
+    // {
+    //   httpOnly: true,
+    //   // secure: true,   => for https
+    // }
+    );
 
     res.json(user);
   } catch (err) {

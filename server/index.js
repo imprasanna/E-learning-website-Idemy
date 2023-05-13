@@ -6,15 +6,22 @@ const { loginRoutes } = require("./routes/login");
 const mongoose = require("mongoose");
 const { logoutRoutes } = require("./routes/logout");
 const { instructorRoutes } = require("./routes/instructor");
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
-require("dotenv").config({ path: ".env" });
-
 // Middlewares
-app.use(cors());
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   next();
+// });
+// app.use(cors());
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(cookieParser());
 app.use(express.json());
 app.use(morgan("dev"));
+
+require("dotenv").config();
 
 port = process.env.PORT || 8000;
 const uri = process.env.DB_URI;
