@@ -3,6 +3,8 @@ const { User } = require("../models/user");
 const makeInstructor = async (req, res) => {
   // console.log("REQ.USER", req.user);
   // console.log("REQ HEADER", req.header);
+  console.log("REQ.USER", req.user);
+  console.log("REQ", req);
   const user = await User.findByIdAndUpdate(
     req.user._id,
     { role: ["Instructor", "Subscriber"] },

@@ -6,6 +6,8 @@ const adminMiddleware = (req, res, next) => {
   const bearerToken = req.headers["authorization"];
   // const token = bearerToken?.replace("Bearer", "").trim();
   const token = req.headers.cookie?.replace("token=", "").trim();
+  // const bearerToken = req.headers["authentication"];
+  // const token = bearerToken?.replace("Bearer", "").trim();
   if (!token) {
     return res
       .status(401)

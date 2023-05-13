@@ -38,7 +38,6 @@ const validateUser = async (req, res) => {
     // send user and token to client, excluding hashed password
 
     user.password = undefined;
-
     const cookieOPtions = {
       expires: new Date(
           Date.now()+5 * 24*60*60*1000
@@ -53,6 +52,11 @@ const validateUser = async (req, res) => {
     //   // secure: true,   => for https
     // }
     );
+    // send token through cookie
+    res.cookie("token", token, {
+      httpOnly: true,
+      // secure: true,   => for https
+    });
 
     res.json(user);
   } catch (err) {
