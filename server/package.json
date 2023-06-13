@@ -11,21 +11,14 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
-<<<<<<< HEAD
     "cookie-parser": "^1.4.6",
-=======
->>>>>>> ee6d4eddba5437368b15c7502c8c8b447e8cf8c5
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "joi": "^17.9.1",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3",
-<<<<<<< HEAD
     "morgan": "^1.10.0",
     "nodemon": "^2.0.22"
-=======
-    "morgan": "^1.10.0"
->>>>>>> ee6d4eddba5437368b15c7502c8c8b447e8cf8c5
   }
 }
